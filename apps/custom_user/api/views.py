@@ -4,6 +4,16 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
+from rest_framework_simplejwt.tokens import RefreshToken
+from .serializers import LoginSerializer
+from rest_framework import status, generics
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
+from .serializers import LoginSerializer
 from django.core.mail import send_mail
 from .serializers import (
     RegistrationSerializer, LoginSerializer, 
@@ -27,6 +37,7 @@ class UserRegistrationView(generics.GenericAPIView):
         )
 
 
+
 class LoginUserView(generics.GenericAPIView):
     serializer_class = LoginSerializer
     permission_classes = [AllowAny]
@@ -34,13 +45,38 @@ class LoginUserView(generics.GenericAPIView):
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        return Response(
+        
+        user = serializer.validated_data.get('user')
+        refresh = RefreshToken.for_user(user)
+        access_token = str(refresh.access_token)
+        refresh_token = str(refresh)
+
+        # Generate response and set tokens as cookies
+        response = Response(
             {
                 "message": "Login successful",
-                "tokens": serializer.validated_data,
             },
             status=status.HTTP_200_OK
         )
+
+        # Set the tokens as HTTP-only cookies for security
+        response.set_cookie(
+            'access_token',
+            access_token,
+            httponly=True,
+            secure=True,  # Set to True when using HTTPS
+            samesite='Lax'
+        )
+        response.set_cookie(
+            'refresh_token',
+            refresh_token,
+            httponly=True,
+            secure=True,  # Set to True when using HTTPS
+            samesite='Lax'
+        )
+
+        return response
+
 
 
 
@@ -90,6 +126,7 @@ class ResetPasswordView(generics.GenericAPIView):
     serializer_class = ResetPasswordSerializer
 
     def post(self, request, *args, **kwargs):
+        # sourcery skip: use-named-expression
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 

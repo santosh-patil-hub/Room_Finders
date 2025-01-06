@@ -1,8 +1,6 @@
-
 from django.urls import path
-from apps.category.api import views
+from apps.category.api.views import CategoryListView
 
 urlpatterns = [
-    path('', views.categories, name='categories'),  # Define your app's views
-    # Add other paths specific to the room app here
+    path('categories/', CategoryListView.as_view(), name='category-list'),
 ]

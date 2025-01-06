@@ -2,6 +2,8 @@ import os
 from pathlib import Path
 from datetime import timedelta
 
+
+
 # Base Directory of your project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -16,28 +18,31 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(','
 
 # Applications Installed
 INSTALLED_APPS = [
+    # Custom apps
+    'apps.custom_user.apps.CustomUserConfig',
+    # Other custom apps
+    'apps.room.apps.RoomConfig',
+    'apps.category.apps.CategoryConfig',
+    'apps.comment.apps.CommentConfig',
+    'apps.bookmark.apps.BookmarkConfig',
+    'apps.city.apps.CityConfig',
+    
+    # Django defaults
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Replace with AppConfig classes
-    'apps.room.apps.RoomConfig',
-    'apps.custom_user.apps.CustomUserConfig',
-    'apps.category.apps.CategoryConfig',
-    'apps.comment.apps.CommentConfig',
-    'apps.bookmark.apps.BookmarkConfig',
-    'apps.location.apps.LocationConfig',
-    'apps.city.apps.CityConfig',
-    # rest_framework
+    
+    # Third-party apps
     'rest_framework',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
-    # corsheaders
     'corsheaders',
-    
 ]
+
+AUTH_USER_MODEL = 'custom_user.User'
 
 # Middleware configuration
 MIDDLEWARE = [
@@ -92,7 +97,7 @@ REST_FRAMEWORK = {
 
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
@@ -107,7 +112,7 @@ EMAIL_HOST_USER = 'kakdepatil333@gmail.com'
 EMAIL_HOST_PASSWORD = 'santosh.patil@333'
 
 
-AUTH_USER_MODEL = 'custom_user.User'
+
 
 
 # settings.py
@@ -144,7 +149,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('DB_NAME', 'roomapp'),  # Replace with actual DB name
         'USER': os.environ.get('DB_USER', 'postgres'),  # Replace with DB user
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'santoshkakde'),  # Replace with DB password
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'baimanus2024'),  # Replace with DB password
         'HOST': os.environ.get('DB_HOST', 'localhost'),  # Replace with DB host if needed
         'PORT': os.environ.get('DB_PORT', '5432'),  # Replace with DB port if needed
     }

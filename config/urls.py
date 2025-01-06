@@ -28,5 +28,4 @@ urlpatterns = [
     path('category/', include('apps.category.urls')),  # Include URLs from the category app
     path('comment/', include('apps.comment.urls')),  # Include URLs from the comment app
     path('bookmark/', include('apps.bookmark.urls')),  # Include URLs from the bookmark app
-    path('location/', include('apps.location.urls')),  # Include URLs from the location app
 ]

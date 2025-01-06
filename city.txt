@@ -1,0 +1,41 @@
+Mumbai (Mumbai City, Mumbai Suburban)
+Pune (Pune)
+Nagpur (Nagpur)
+Nashik (Nashik)
+Thane (Thane)
+Aurangabad (Aurangabad)
+Solapur (Solapur)
+Amravati (Amravati)
+Kolhapur (Kolhapur)
+Nanded (Nanded)
+Sangli (Sangli)
+Jalgaon (Jalgaon)
+Akola (Akola)
+Latur (Latur)
+Dhule (Dhule)
+Ahmednagar (Ahmednagar)
+Chandrapur (Chandrapur)
+Parbhani (Parbhani)
+Ichalkaranji (Kolhapur)
+Jalna (Jalna)
+Bhusawal (Jalgaon)
+Panvel (Raigad)
+Badlapur (Thane)
+Beed (Beed)
+Gondia (Gondia)
+Satara (Satara)
+Barshi (Solapur)
+Yavatmal (Yavatmal)
+Achalpur (Amravati)
+Osmanabad (Osmanabad)
+Nandurbar (Nandurbar)
+Wardha (Wardha)
+Udgir (Latur)
+Hinganghat (Wardha)
+
+
+
+
+
+
+
